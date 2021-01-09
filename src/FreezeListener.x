@@ -125,34 +125,34 @@ static LAActivator *_LASharedActivator;
 		int pid = application.internalProcessState.pid;
 
 		//動くか取得
-		BOOL isRunning = application.internalProcessState.running;
+		// BOOL isRunning = application.internalProcessState.running;
 
-		//ステータスを取得
-		int status = application.internalProcessState.taskState;
+		// //ステータスを取得
+		// int status = application.internalProcessState.taskState;
 
 		//アプリが動いているなら止める、止まってたら再開する
 		system((char *)[[NSString stringWithFormat:@"kill -STOP %i", pid] UTF8String]);
 
 		//MARK: アラートを出す処理
 		//親ビューを生成
-		UIViewController *view = [UIApplication sharedApplication].keyWindow.rootViewController;
-        while (view.presentedViewController != nil && !view.presentedViewController.isBeingDismissed) {
-                view = view.presentedViewController;
-        }
+		// UIViewController *view = [UIApplication sharedApplication].keyWindow.rootViewController;
+        // while (view.presentedViewController != nil && !view.presentedViewController.isBeingDismissed) {
+        //         view = view.presentedViewController;
+        // }
 		
-		//アラートコントローラーを作成
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Freeza Action" 
-									message: [ NSString stringWithFormat: @"Application: %@\nPID: %d\nStatus: %i\nisRunning: %hhd", identifier, pid, status, isRunning]
-									preferredStyle:UIAlertControllerStyleAlert];
+		// //アラートコントローラーを作成
+		// UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Freeza Action" 
+		// 							message: [ NSString stringWithFormat: @"Application: %@\nPID: %d\nStatus: %i\nisRunning: %hhd", identifier, pid, status, isRunning]
+		// 							preferredStyle:UIAlertControllerStyleAlert];
 
-		[alert addAction:[UIAlertAction actionWithTitle:@"OK" 
-                                                        style:UIAlertActionStyleDefault 
-                                                      handler:^(UIAlertAction *action) {
-        //ボタンが押された時の処理                                                      
-    	}]];
+		// [alert addAction:[UIAlertAction actionWithTitle:@"OK" 
+        //                                                 style:UIAlertActionStyleDefault 
+        //                                               handler:^(UIAlertAction *action) {
+        // //ボタンが押された時の処理                                                      
+    	// }]];
 
-		//プレゼント
-		[view presentViewController:alert animated:YES completion:nil];
+		// //プレゼント
+		// [view presentViewController:alert animated:YES completion:nil];
 
 		// int returnCode = system([ NSString stringWithFormat: @"/usr/bin/ %@", identifier ]);
 

@@ -126,34 +126,34 @@ static LAActivator *_LASharedActivator;
 		int pid = application.internalProcessState.pid;
 
 		
-		BOOL isRunning = application.internalProcessState.running;
+		
 
 		
-		int status = application.internalProcessState.taskState;
+		
 
 		
 		system((char *)[[NSString stringWithFormat:@"kill -STOP %i", pid] UTF8String]);
 
 		
 		
-		UIViewController *view = [UIApplication sharedApplication].keyWindow.rootViewController;
-        while (view.presentedViewController != nil && !view.presentedViewController.isBeingDismissed) {
-                view = view.presentedViewController;
-        }
 		
-		
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Freeza Action" 
-									message: [ NSString stringWithFormat: @"Application: %@\nPID: %d\nStatus: %i\nisRunning: %hhd", identifier, pid, status, isRunning]
-									preferredStyle:UIAlertControllerStyleAlert];
-
-		[alert addAction:[UIAlertAction actionWithTitle:@"OK" 
-                                                        style:UIAlertActionStyleDefault 
-                                                      handler:^(UIAlertAction *action) {
         
-    	}]];
+        
+        
+		
+		
+		
+		
+		
 
 		
-		[view presentViewController:alert animated:YES completion:nil];
+        
+        
+        
+    	
+
+		
+		
 
 		
 
