@@ -4,6 +4,7 @@
 #import <libactivator/libactivator.h>
 #import <stdlib.h>
 #import <UIKit/UIKit.h>
+#import <SpringBoard/SpringBoard.h>
 
 static NSString *bundleID = @"com.p1atdev.freezaListener";
 static LAActivator *_LASharedActivator;
@@ -14,10 +15,10 @@ static LAActivator *_LASharedActivator;
 
 @end
 
-
-
-
-
+@interface SBApplicationProcess
+@property(readonly, nonatomic, getter=isRunning) _Bool running;
+@property(readonly, nonatomic) int pid;
+@end
 
 @implementation FreezaListener
 

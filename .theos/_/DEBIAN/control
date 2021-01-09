@@ -6,5 +6,5 @@ Maintainer: p1atdev
 Author: p1atdev
 Section: Addons (Activator)
 Depends: mobilesubstrate (>= 0.9.5000), libactivator (>= 1.8.3)
-Version: 0.0.1-16+debug
+Version: 0.0.1-18+debug
 Installed-Size: 152
