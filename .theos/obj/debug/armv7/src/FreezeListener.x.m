@@ -1,4 +1,4 @@
-#line 1 "Listener.x"
+#line 1 "src/FreezeListener.x"
 #include <objc/runtime.h>
 #include <dlfcn.h>
 #import <libactivator/libactivator.h>
@@ -8,7 +8,7 @@
 #include <spawn.h>
 #include <sys/sysctl.h>
 
-static NSString *bundleID = @"com.p1atdev.freezaListener";
+static NSString *bundleID = @"com.p1atdev.freezaListener.freeze";
 static LAActivator *_LASharedActivator;
 
 @interface FreezaListener : NSObject <LAListener>
@@ -132,14 +132,7 @@ static LAActivator *_LASharedActivator;
 		int status = application.internalProcessState.taskState;
 
 		
-		if (isRunning) {
-			
-    		
-
-			system((char *)[[NSString stringWithFormat:@"kill -STOP %i", pid] UTF8String]);
-		} else {
-			system((char *)[[NSString stringWithFormat:@"kill -CONT %i", pid] UTF8String]);
-		}
+		system((char *)[[NSString stringWithFormat:@"kill -STOP %i", pid] UTF8String]);
 
 		
 		
@@ -204,7 +197,7 @@ static LAActivator *_LASharedActivator;
 
 
 - (NSString *)activator:(LAActivator *)activator requiresLocalizedTitleForListenerName:(NSString *)listenerName {
-	return @"FreezaListener";
+	return @"FreezaFreezer";
 }
 
 - (NSString *)activator:(LAActivator *)activator requiresLocalizedDescriptionForListenerName:(NSString *)listenerName {

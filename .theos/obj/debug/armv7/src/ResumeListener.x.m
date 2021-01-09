@@ -1,4 +1,4 @@
-#line 1 "Listener.x"
+#line 1 "src/ResumeListener.x"
 #include <objc/runtime.h>
 #include <dlfcn.h>
 #import <libactivator/libactivator.h>
@@ -8,10 +8,10 @@
 #include <spawn.h>
 #include <sys/sysctl.h>
 
-static NSString *bundleID = @"com.p1atdev.freezaListener";
+static NSString *bundleID = @"com.p1atdev.freezaListener.resume";
 static LAActivator *_LASharedActivator;
 
-@interface FreezaListener : NSObject <LAListener>
+@interface FreezaResumeListener : NSObject <LAListener>
 
 + (id)sharedInstance;
 
@@ -42,7 +42,7 @@ static LAActivator *_LASharedActivator;
 @property NSString *badgeNumberOrString;
 @end
 
-@implementation FreezaListener
+@implementation FreezaResumeListener
 
 + (instancetype)sharedInstance {
 	static id sharedInstance = nil;
@@ -132,14 +132,9 @@ static LAActivator *_LASharedActivator;
 		int status = application.internalProcessState.taskState;
 
 		
-		if (isRunning) {
-			
-    		
-
-			system((char *)[[NSString stringWithFormat:@"kill -STOP %i", pid] UTF8String]);
-		} else {
-			system((char *)[[NSString stringWithFormat:@"kill -CONT %i", pid] UTF8String]);
-		}
+		
+		system((char *)[[NSString stringWithFormat:@"kill -CONT %i", pid] UTF8String]);
+		
 
 		
 		
@@ -204,15 +199,15 @@ static LAActivator *_LASharedActivator;
 
 
 - (NSString *)activator:(LAActivator *)activator requiresLocalizedTitleForListenerName:(NSString *)listenerName {
-	return @"FreezaListener";
+	return @"FreezaResumer";
 }
 
 - (NSString *)activator:(LAActivator *)activator requiresLocalizedDescriptionForListenerName:(NSString *)listenerName {
-	return @"Freeze your foreground application.";
+	return @"Resume your foreground application.";
 }
 
 - (NSString *)activator:(LAActivator *)activator requiresLocalizedGroupForListenerName:(NSString *)listenerName {
-	return @"FreezaListeners";
+	return @"FreezaResumeListeners";
 }
 
 - (NSNumber *)activator:(LAActivator *)activator requiresRequiresAssignmentForListenerName:(NSString *)listenerName {

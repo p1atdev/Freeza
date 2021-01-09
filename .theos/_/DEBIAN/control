@@ -1,10 +1,10 @@
 Package: com.p1atdev.freeza
 Name: Freeza
 Architecture: iphoneos-arm
-Description: A simple listener for the libactivator API!
+Description: Freeze and resume your foreground application!
 Maintainer: p1atdev
 Author: p1atdev
 Section: Addons (Activator)
 Depends: mobilesubstrate (>= 0.9.5000), libactivator (>= 1.8.3)
-Version: 0.0.1-18+debug
-Installed-Size: 152
+Version: 0.0.1-29+debug
+Installed-Size: 192

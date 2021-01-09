@@ -2,7 +2,7 @@ Package: com.p1atdev.freeza
 Name: Freeza
 Version: 0.0.1
 Architecture: iphoneos-arm
-Description: A simple listener for the libactivator API!
+Description: Freeze and resume your foreground application!
 Maintainer: p1atdev
 Author: p1atdev
 Section: Addons (Activator)

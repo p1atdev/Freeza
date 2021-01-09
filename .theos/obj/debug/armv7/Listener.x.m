@@ -5,6 +5,8 @@
 #import <stdlib.h>
 #import <UIKit/UIKit.h>
 #import <SpringBoard/SpringBoard.h>
+#include <spawn.h>
+#include <sys/sysctl.h>
 
 static NSString *bundleID = @"com.p1atdev.freezaListener";
 static LAActivator *_LASharedActivator;
@@ -15,9 +17,29 @@ static LAActivator *_LASharedActivator;
 
 @end
 
-@interface SBApplicationProcess
+@interface SBApplicationProcessState
+@property(readonly, nonatomic) _Bool isBeingDebugged;
+@property(readonly, nonatomic) int visibility;
+@property(readonly, nonatomic) int taskState;
+@property(readonly, nonatomic, getter=isForeground) _Bool foreground;
 @property(readonly, nonatomic, getter=isRunning) _Bool running;
 @property(readonly, nonatomic) int pid;
+@end
+
+
+@interface SBApplication
+@property(retain, getter=_internalProcessState, setter=_setInternalProcessState:) SBApplicationProcessState *internalProcessState;
+@end
+
+
+
+
+
+@interface SBApplicationController : NSObject
++ (id)sharedInstance;
+- (id)applicationWithBundleIdentifier:(id)arg1;
+
+@property NSString *badgeNumberOrString;
 @end
 
 @implementation FreezaListener
@@ -90,19 +112,55 @@ static LAActivator *_LASharedActivator;
 	
 
 		
+		NSString *identifier = LASharedActivator.displayIdentifierForCurrentApplication;
+
+		
+		Class $SBApplicationController = objc_getClass("SBApplicationController");
+		SBApplication *application = [[$SBApplicationController sharedInstance] applicationWithBundleIdentifier:identifier];
 
 		
 		
 		
+		
+		
+		int pid = application.internalProcessState.pid;
+
+		
+		BOOL isRunning = application.internalProcessState.running;
+
+		
+		int status = application.internalProcessState.taskState;
+
+		
+		if (isRunning) {
+			
+    		
+
+			system((char *)[[NSString stringWithFormat:@"kill -STOP %i", pid] UTF8String]);
+		} else {
+			system((char *)[[NSString stringWithFormat:@"kill -CONT %i", pid] UTF8String]);
+		}
 
 		
 		
+		UIViewController *view = [UIApplication sharedApplication].keyWindow.rootViewController;
+        while (view.presentedViewController != nil && !view.presentedViewController.isBeingDismissed) {
+                view = view.presentedViewController;
+        }
 		
 		
-		
-		
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Freeza Action" 
+									message: [ NSString stringWithFormat: @"Application: %@\nPID: %d\nStatus: %i\nisRunning: %hhd", identifier, pid, status, isRunning]
+									preferredStyle:UIAlertControllerStyleAlert];
+
+		[alert addAction:[UIAlertAction actionWithTitle:@"OK" 
+                                                        style:UIAlertActionStyleDefault 
+                                                      handler:^(UIAlertAction *action) {
+        
+    	}]];
 
 		
+		[view presentViewController:alert animated:YES completion:nil];
 
 		
 
