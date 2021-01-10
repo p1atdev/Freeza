@@ -1,6 +1,6 @@
 Package: com.p1atdev.freeza
 Name: Freeza
-Version: 0.0.2
+Version: 1.0.0
 Architecture: iphoneos-arm
 Description: Freeze and resume your foreground application!
 Maintainer: p1atdev
