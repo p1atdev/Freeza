@@ -1,10 +1,11 @@
 Package: com.p1atdev.freeza
 Name: Freeza
 Architecture: iphoneos-arm
-Description: Freeze and resume your foreground application!
+Depiction: https://p1atdev.github.io/repo/depictions/?p=com.p1atdev.freeza
 Maintainer: p1atdev
 Author: p1atdev
 Section: Addons (Activator)
 Depends: mobilesubstrate (>= 0.9.5000), libactivator (>= 1.8.3)
-Version: 1.0.0-5
+Icon: file:///PreferenceBundles/Freeza.bundle/icon@2x.png
+Version: 1.0.1-1
 Installed-Size: 168
